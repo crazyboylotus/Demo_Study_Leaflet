@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <p>{{ message }}</p>
+</div>
+<div id="vue_det">
+    <p>name: {{ name}}</p>
+    <p>sex: {{ sex}}</p>
+    <p>methods:{{ methods() }}</p>
+</div>
+<script src="lib/vue/vue.js"></script>
+<script type="text/javascript">
+ var app = new Vue({
+     el:'#app',
+     data:{
+         message:'Hello Vue.js'
+     }
+ });
+    var vm = new Vue({
+        el:'#vue_det',
+        data:{
+            name:'liuliu',
+            sex:'女',
+            methods:function(){
+                return this.name+ '是一个'+this.sex+'生';
+            }
+        }
+    });
+</script>
+</body>
+</html>

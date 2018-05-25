@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo_图形绘制_可编辑</title>
+    <link href="../lib/leaflet/leaflet.css" rel="stylesheet" />
+    <link href="../lib/leaflet/leaflet.draw.css" rel="stylesheet" />
+    <script src="../lib/leaflet/leaflet-src.js"></script>
+    <script src="../lib/leaflet/plugins/leaflet.ChineseTmsProviders.js"></script>
+    <!--封装好的Toolbar-->
+    <!--<script src="../lib/leaflet/plugins/leaflet.draw.js"></script>
+    <script src="../lib/leaflet/plugins/Leaflet.Draw.Event.js"></script>
+    <script src="../lib/leaflet/plugins/edit/handler/Edit.Poly.js"></script>
+    <script src="../lib/leaflet/plugins/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="../lib/leaflet/plugins/edit/handler/Edit.Rectangle.js"></script>
+    <script src="../lib/leaflet/plugins/edit/handler/Edit.Marker.js"></script>
+    <script src="../lib/leaflet/plugins/edit/handler/Edit.CircleMarker.js"></script>
+    <script src="../lib/leaflet/plugins/edit/handler/Edit.Circle.js"></script>
+    <script src="../lib/leaflet/plugins/draw/handler/Draw.Feature.js"></script>
+    <script src="../lib/leaflet/plugins/draw/handler/Draw.Polyline.js"></script>
+    <script src="../lib/leaflet/plugins/draw/handler/Draw.Polygon.js"></script>
+    <script src="../lib/leaflet/plugins/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="../lib/leaflet/plugins/draw/handler/Draw.Rectangle.js"></script>
+    <script src="../lib/leaflet/plugins/draw/handler/Draw.Circle.js"></script>
+    <script src="../lib/leaflet/plugins/draw/handler/Draw.Marker.js"></script>
+    <script src="../lib/leaflet/plugins/draw/handler/Draw.CircleMarker.js"></script>
+    <script src="../lib/leaflet/plugins/ext/TouchEvents.js"></script>
+    <script src="../lib/leaflet/plugins/ext/LatLngUtil.js"></script>
+    <script src="../lib/leaflet/plugins/ext/GeometryUtil.js"></script>
+    <script src="../lib/leaflet/plugins/ext/LineUtil.Intersect.js"></script>
+    <script src="../lib/leaflet/plugins/ext/Polyline.Intersect.js"></script>
+    <script src="../lib/leaflet/plugins/ext/Polygon.Intersect.js"></script>
+    <script src="../lib/leaflet/plugins/Control.Draw.js"></script>
+    <script src="../lib/leaflet/plugins/Control.Draw.js"></script>
+    <script src="../lib/leaflet/plugins/Tooltip.js"></script>
+    <script src="../lib/leaflet/plugins/Toolbar.js"></script>
+    <script src="../lib/leaflet/plugins/draw/DrawToolbar.js"></script>
+    <script src="../lib/leaflet/plugins/edit/EditToolbar.js"></script>
+    <script src="../lib/leaflet/plugins/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="../lib/leaflet/plugins/edit/handler/EditToolbar.Delete.js"></script>
+    <script src="../lib/leaflet/plugins/editable/leaflet-editable-polyline.js"></script>-->
+    <script src="../lib/leaflet/plugins/Semicircle.js"></script>
+    <script src="../lib/leaflet/plugins/editable/Path.Drag.js"></script>
+    <script src="../lib/leaflet/plugins/editable/leaflet.Editable.js"></script>
+    <!--扩展线的触发事件的区域-->
+    <!--<script src="../lib/leaflet/plugins/leaflet-touch-helper.js"></script>-->
+    <!--右键菜单-->
+    <link href="../lib/leaflet/plugins/contextmenu/leaflet.contextmenu.css" rel="stylesheet" />
+    <script src="../lib/leaflet/plugins/contextmenu/leaflet.contextmenu.js"></script>
+    <!--贝塞尔曲线飞行-->
+    <script src="../lib/leaflet/plugins/snap.svg-min.js"></script>
+    <script src="../lib/leaflet/plugins/leaflet.bezier.js"></script>
+    <!--点滑行-->
+    <script src="../lib/leaflet/plugins/leaflet.Marker.SlideTo.js"></script>
+    <!--调整marker的角度-->
+    <script src="../lib/leaflet/plugins/leaflet.rotatedMarker.js"></script>
+    <script src="../lib/leaflet/plugins/Tooltip.js"></script>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../scripts/uavPath.js"></script>
+    <script src="../Scripts/drawTool.js"></script>
+    <style>
+        body{font-size:14px;font-family: "Microsoft YaHei UI"}
+        #mapDiv{width:100%;height:550px;}
+        #toolbar{border:1px solid #e1f3d8;height:32px;margin-top:5px;}
+        #toolbar input[type='button']{line-height:26px;border-radius:5px;}
+        #ps{font-size:12px;}
+        .red{color:red;}
+        .fl{float:left;}
+        /*自定义样式*/
+        .leaflet-div-icon-custom{background:#c6ff6c;border-radius:10px;border:1px solid #666}
+    </style>
+</head>
+<body>
+<div id="mapDiv"></div>
+<!--<div id="movinglabel">我是一个可以移动的html标注</div>-->
+<div id="toolbar">
+    <input id="point" type="button" value="点"/>
+    <input id="line"  type="button" value="线"/>
+    <input id="polygon" type="button" value="面"/>
+    <input id="circle" type="button" value="圆"/>
+    <input id="rectangle" type="button" value="矩形"/>
+    <input id="sector" type="button" value="扇形"/>
+    <input id="freehandLine" type="button" value="freehand线"/>
+    <input id="freehandPolygon" type="button" value="freehand面"/>
+    <!--<input id="edit" type="button" value="编辑全部"/>-->
+    <input id="clear" type="button" value="清空"/>
+    <input id="export" type="button" value="导出"/>
+    <input id="import" type="button" value="导入"/>
+    <input type="file" id="importJSON" style="display: none" />
+    <input type="button" onclick="lMap.addDaynimicGeo()" value="加载动态数据"/>
+
+</div>
+<div id="ps">
+    <span class="red fl">说明：</span>
+    <div id="psInfo">circleMarker暂时不可以编辑。双击要素进行编辑，单击要素结点可以删除结点</div>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

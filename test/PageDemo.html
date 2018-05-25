@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>设计页面</title>
+    <link href="../css/public.css" rel="stylesheet" />
+
+    <style>
+        .bg_prop_box {
+            padding-bottom: 15px;
+            width: 268px;
+            border: 1px solid #222a36;
+            border-radius: 5px;
+            background-color: #29313b;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, .25)
+        }
+
+        .bg_prop_box h2 {
+            padding-left: 10px;
+            height: 27px;
+            border-bottom: 1px solid #404b59;
+            background-image: -webkit-linear-gradient(90deg, #29313b 0, #333d4a 100%);
+            background-image: -ms-linear-gradient(90deg, #29313b 0, #333d4a 100%);
+            box-shadow: 0 1px 1px hsla(0, 0%, 100%, .15) inset;
+            font-weight: 400;
+            font-family: "微软雅黑";
+            line-height: 27px
+        }
+
+        .bg_prop_box .tab_prop {
+            margin-top: 10px;
+            margin-left: 10px
+        }
+
+        .tab_prop td {
+            overflow: hidden;
+            height: 24px;
+            border-right: 1px solid #1d2229;
+            border-bottom: 1px solid #1d2229;
+            background-color: #364150;
+            color: #fff;
+            text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 24px;
+            word-break: keep-all
+        }
+
+        .tab_prop .tab_col_title,
+        .table_title td {
+            height: 24px;
+            background-image: -webkit-linear-gradient(90deg, #1d232a 0, #343e4a 100%);
+            background-image: -ms-linear-gradient(90deg, #1d232a 0, #29313b 100%);
+            color: #cfd0d2;
+            text-align: center;
+            font-weight: 600;
+            line-height: 24px
+        }
+
+        .tab_prop .tab_col_title {
+            padding: 0 10px
+        }
+
+        .tab_prop .prop_geo{
+            width: 100%;
+            height: 24px;
+            height: 22px;
+            border: 1px solid #1d2229;
+            background-color: #f2f2f2;
+            color: #333;
+            text-align: center;
+            line-height: 24px
+        }
+        .select_geo{
+            width: 180px;
+            height: 24px;
+            height: 22px;
+            border: 1px solid #1d2229;
+            background-color: #f2f2f2;
+            color: #333;
+            text-align: center;
+            line-height: 24px;
+            margin:10px 10px 0 10px;
+        }
+        
+        .bg_box_btn {
+            margin: 0 auto;
+            padding-top: 10px;
+            width: 180px
+        }
+
+        .btn_prop {
+            display: block;
+            width: 84px;
+            height: 24px;
+            border: 1px solid #212830;
+            border-radius: 30px;
+            background-image: -webkit-linear-gradient(90deg, #2e3847 0, #3d4d63 100%);
+            background-image: -ms-linear-gradient(90deg, #2e3847 0, #3d4d63 100%);
+            -webkit-box-shadow: inset 0 1px #5a687a;
+            -moz-box-shadow: inset 0 1px #5a687a;
+            box-shadow: 0 1px 0 0 rgba(35, 35, 35, .004), inset 0 1px 0 0 hsla(0, 0%, 100%, .15);
+            color: #bfc2c5;
+            text-align: center;
+            font-size: 9pt;
+            line-height: 24px
+        }
+
+        .btn_prop:hover {
+            background-image: -webkit-linear-gradient(90deg, #3d4d63 0, #2e3847 100%);
+            background-image: -ms-linear-gradient(90deg, #3d4d63 0, #2e3847 100%);
+            color: #fff
+        }
+
+        .btn_ctrl_lonlat {
+            margin-left: 5px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg_prop_box" style="width: 200px; left: 800px; top: 200px;">
+        <select class="select_geo">
+            <option value="point">点</option>
+            <option value="polyline">线</option>
+            <option value="polygon">面</option>
+            <option value="circle">圆</option>
+            <option value="">矩形</option>
+            <option value="">扇形</option>
+            <option value="">弧线</option>
+            <option value="">文字</option>
+        </select>
+        <table width="180" class="tab_prop" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr class="table_title">
+                    <td>经度</td>
+                    <td>纬度</td>
+                    <td>
+                        <a class="btn_prop btn_ctrl_lonlat" href="javascript:void(0)">+</a>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="72">
+                        <input class="prop_geo" placeholder="经度" type="text">
+                    </td>
+                    <td width="72">
+                        <input class="prop_geo" placeholder="纬度" type="text">
+                    </td>
+                    <td>
+                        <a class="btn_prop btn_ctrl_lonlat" href="javascript:void(0)">-</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="72">
+                        <input class="prop_geo" placeholder="经度" type="text">
+                    </td>
+                    <td width="72">
+                        <input class="prop_geo" placeholder="纬度" type="text">
+                    </td>
+                    <td>
+                        <a class="btn_prop btn_ctrl_lonlat" href="javascript:void(0)">-</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="180" class="tab_prop" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="tab_col_title">圆心</td>
+                    <td width="72">
+                        <input class="prop_geo" placeholder="经度" type="text">
+                    </td>
+                    <td width="72">
+                        <input class="prop_geo" placeholder="纬度" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tab_col_title">半径</td>
+                    <td colspan="2">
+                        <input class="prop_geo" placeholder="半径" type="text">
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="bg_box_btn overflow">
+            <a id="btn_ok_uavtask" class="btn_prop float_l" href="javascript:void(0)">确定</a>
+            <a id="btn_cancel_uavtask" class="btn_prop float_r" href="javascript:void(0)">取消</a>
+        </div>
+    </div>
+</body>
+
+</html>

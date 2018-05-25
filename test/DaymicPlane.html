@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="Access-Control-Allow-Origin" content="http://47.92.159.240:9029/api/ADSBData/0">
+
+    <meta charset="UTF-8">
+    <title>Demo_动态航班绘制</title>
+    <link href="../css/public.css" rel="stylesheet" />
+    <link href="../lib/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="../lib/leaflet/leaflet-src.js"></script>
+    <script src="../lib/leaflet/plugins/leaflet.ChineseTmsProviders.js"></script>
+    <!--点滑行-->
+    <script src="../lib/leaflet/plugins/leaflet.Marker.SlideTo.js"></script>
+    <!--调整marker的角度-->
+    <script src="../lib/leaflet/plugins/leaflet.rotatedMarker.js"></script>
+    <script src="../lib/leaflet/plugins/Tooltip.js"></script>
+    <script src="../lib/proxy/ajaxhelper.js"></script>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/CalcTool.js"></script>
+    <script src="../Scripts/daymicPlane.js"></script>
+    <style>
+        #mapDiv{width:100%;height:550px;}
+        #toolbar{border:1px solid #e1f3d8;height:32px;margin-top:5px;}
+        .btn{line-height:26px;border-radius:5px;padding:1px 6px;border-width:2px;font-family: "Microsoft YaHei UI";border-width: 2px;
+            border-style: outset;
+            border-color: buttonface;
+            border-image: initial;}
+        #ps{font-size:12px;}
+        .red{color:red;}
+    </style>
+</head>
+<body>
+<div id="mapDiv"></div>
+<!--<div id="movinglabel">我是一个可以移动的html标注</div>-->
+<div class="toolbar">
+    <input id="drawFlight" class="btn" type="button" onclick="" value="加载动态数据"/>
+
+</div>
+<div id="ps">
+    <span class="red fl">说明：</span>
+    <div id="psInfo"></div>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无人机航线规划</title>
+    <link href="../lib/leaflet/leaflet.css" rel="stylesheet" />
+    <link href="../lib/leaflet/leaflet.draw.css" rel="stylesheet" />
+    <script src="../lib/leaflet/leaflet-src.js"></script>
+    <script src="../lib/leaflet/plugins/leaflet.ChineseTmsProviders.js"></script>
+    <script src="../lib/leaflet/plugins/leaflet.polylineDecorator.js"></script>
+    <script src="../lib/leaflet/plugins/leaflet.curve.js"></script>
+    <script src="../lib/cpRPA/cpRPA.js"></script>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/CalcTool.js"></script>
+    <script src="../Scripts/routePlanning.js"></script>
+    <style>
+        body{font-size:14px;font-family: "Microsoft YaHei UI"}
+        #mapDiv{width:100%;height:500px;}
+        .toolbar{border:1px solid #e1f3d8;height:32px;margin-top:5px;}
+        .toolbar input[type='button']{line-height:26px;border-radius:5px;}
+        #gps{color:red;font-size: 12px;}
+        #ps{font-size:12px;}
+        .red{color:red;}
+        .fl{float:left;}
+        /*自定义样式*/
+        .leaflet-div-icon-custom{background:#c6ff6c;border-radius:10px;border:1px solid #666}
+        .leaflet-div-icon { background: #fff;border: 1px solid #666; }
+        .leaflet-div-icon2
+        {
+            background:red;
+            border:5px solid rgba(255,255,255,0.5);
+            color:blue;
+            font-weight:bold;
+            text-align:center;
+            border-radius:50%;
+            line-height:30px;
+        }
+    </style>
+</head>
+<body>
+<div id="mapDiv">
+</div>
+<div id="gps"></div>
+<div class="toolbar">
+    <input id="drawArea" type="button" value="绘制作业区域"/>
+    <input id="clear_wp"  type="button" value="清空作业区域"/>
+    <input id="clear_route"  type="button" value="清空农业植保轨迹"/>
+    <input id="clear_route_curve"  type="button" value="清空固定翼轨迹"/>
+    <input id="clear_route_hc"  type="button" value="清空航测轨迹"/>
+    <!--<input id="polygon" type="button" value="面"/>-->
+</div>
+<div class="toolbar" id="calc">
+        <label>飞行间隔</label><input type="number" placeholder="请输入飞行间隔" id="spaceInp"/>
+
+        <label>旋转角度</label>
+        <input type="range" id="stepRotate" max="360" min="0" value="0" />
+        <span id="stepRotateValue">0</span>
+
+        <button id="crtStepBtn" class="hide">生成航线</button>
+        <button id="crtStepBtn_hc" class="hide">生成航测航线</button>
+</div>
+<!--<div id="ps">
+    <span class="red fl">说明：</span>
+    <div id="psInfo"></div>
+</div>-->
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

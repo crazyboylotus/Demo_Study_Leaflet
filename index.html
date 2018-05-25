@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>我的Leaflet小程序</title>
+    <link href="lib/leaflet/leaflet.css" rel="stylesheet" />
+    <style>
+        body{margin:0px;}
+        #map-container { width: 1024px; height: 550px; }
+        #tip {display:inline;position:absolute;left:1025px;top:0;height:300px;overflow-y:auto;}
+        .tooltip{color:red;font-size:13px;}
+        .leaflet-div-icon { background: #fff;border: 1px solid #666; }
+        .leaflet-div-icon2
+        {
+            background:red;
+            border:5px solid rgba(255,255,255,0.5);
+            color:blue;
+            font-weight:bold;
+            text-align:center;
+            border-radius:50%;
+            line-height:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map-container"></div>
+    <div id="tip"></div>
+    <div id="div_icon" class="tooltip">asdfsdf</div>
+    <div> <button type="button" onclick="basemap.addExtendsLayer();">加载扩展图层</button></div>
+    <script src="lib/leaflet/leaflet-src.js"></script>
+    <script src="lib/leaflet/plugins/leaflet-providers.js"></script>
+    <script src="lib/leaflet/plugins/leaflet.latlng-graticule.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/index.js"></script>
+</body>
+</html>

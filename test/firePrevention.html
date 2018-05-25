@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>演示页面_森林防火</title>
+    <link href="../lib/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="../lib/leaflet/leaflet-src.js"></script>
+    <script src="../lib/leaflet/plugins/leaflet.ChineseTmsProviders.js"></script> 
+    <script src="../Scripts/jquery-1.7.1.min.js"></script>
+    <style>
+        .mapDiv{border:1px solid #eee;width:100%;height:380px;}
+        .info{width:100px;height:200px;float:left;border:#eee solid 1px;}
+        .info_photo{border:1px solid #000;position:absolute;z-index:10000;left:100px;top:100px;display:none;}
+        .info_photo .arrow{width: 0;height: 0;border-top: 5px solid transparent;border-right: 10px solid #ebebeb;border-bottom: 5px solid transparent;position: absolute;left: -10px;top: 7px; }
+    </style>
+</head>
+<body>
+<div id="mapDiv" class="mapDiv"></div>
+<div>
+    <div class="info" style="width:600px;"></div>
+    <div id="markerBtnList" class="info" style="width:400px;">
+        
+    </div>
+    <div class="info" style="width:300px;">
+        <button id="video">视频影像</button>
+        <button id="zs">正射影像</button>
+        <button id="three">3D影像</button>
+    </div>
+    <div id="info_photo" class="info_photo">
+        <div class="arrow"></div>
+        <div><img src="../images/123.png"/><br>
+            <label>asdfasdf</label>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">    
+    var fP = {
+        _imgData:[
+            {
+                id:1,
+                lonlat:[34.705493,106.765137],
+                name:"防火1",
+                time:"2018/05/20 09:00:00",
+                imgurl:"../images/123.png",
+            }, {
+                id:2,
+                lonlat:[33.67864,107.226563],
+                name:"防火2",
+                time:"2018/05/20 09:00:00",
+                imgurl:"../images/123.png",
+            }, {
+                id:3,
+                lonlat:[33.091542,108.347168],
+                name:"防火3",
+                time:"2018/05/20 09:00:00",
+                imgurl:"../images/123.png",
+            }, {
+                id:4,
+                lonlat:[32.971804,109.599609],
+                name:"防火4",
+                time:"2018/05/20 09:00:00",
+                imgurl:"../images/123.png",
+            }, {
+                id:5,
+                lonlat:[33.174342,111.2146],
+                name:"防火5",
+                time:"2018/05/20 09:00:00",
+                imgurl:"../images/123.png",
+            }
+        ],
+        _lonlats:[
+            [34.705493,106.765137],
+            [33.67864,107.226563],
+            [33.091542,108.347168],
+            [32.971804,109.599609],
+            [33.174342,111.2146]
+        ],
+        _map:null,
+        basemap:L.tileLayer.chinaProvider('GaoDe.Normal.Map', {
+            maxZoom: 18,
+            minZoom: 4
+        }),
+        _currentLy:null,
+        imgMarkers:new L.FeatureGroup(),
+        //初始化
+        init:function(){
+            fP.initMap();
+        },
+        //初始化地图
+        initMap:function(){
+            fP._map = L.map("mapDiv", {
+                center: [33.67864,107.226563],//[36.12, 120.41],
+                zoom: 7,//11,
+                layers: [fP.basemap,fP.imgMarkers],
+                zoomControl: false
+            });
+            L.control.zoom({zoomInTitle: '放大', zoomOutTitle: '缩小', position: 'bottomright'}).addTo(fP._map);
+            fP._map.on("moveend",function(e){
+                if(fP._currentLy)
+                    fP.showImgWindow(fP._currentLy);
+            });   
+            fP._map.on("move",function(e){
+                if(fP._currentLy)
+                    fP.showImgWindow(fP._currentLy);
+            });   
+            fP._map.on("zoomend",function(e){
+                if(fP._currentLy)
+                    fP.showImgWindow(fP._currentLy);
+            });           
+            fP.initUavRoute();
+            fP.bindEvt();
+        },
+        //加载无人机路线与拍照点
+        initUavRoute:function(){
+            L.polyline(fP._lonlats,{
+                "color":"#31859b",
+                "weight":"2",
+                "opacity":"1"
+            }).addTo(fP._map);
+            $("#markerBtnList").empty();
+            for(var i=0;i<fP._imgData.length;i++){
+                var imgData = fP._imgData[i];
+                imgData.ly = L.marker(imgData.lonlat,imgData).addTo(fP.imgMarkers);
+                imgData.ly.on("click",function(e){
+                    fP._currentLy = this;
+                    fP.showImgWindow(this);
+                });
+                //imgData.ly.marker.bindPopup()
+                $("#markerBtnList").append("<a data-id='"+imgData.id+"' href='javascript:void(0)'>" + imgData.name +"</a><br/>");
+            }
+        },
+        bindEvt:function(){
+            $("#markerBtnList a").unbind("click").bind("click",function(){
+                var id = $(this).data("id");
+                var imgData = fP.getImgMarker(id);                
+                if(imgData){
+                    var ly = imgData.ly;
+                    fP._currentLy = ly;
+                    fP.showImgWindow(fP._currentLy);
+                }               
+            });
+            $("#video").unbind("click").bind("click",function(){
+                
+            });
+            $("#zs").unbind("click").bind("click",function(){
+
+            });
+            $("#three").unbind("click").bind("click",function(){
+
+            });
+        },
+        showImgWindow:function(ly){
+            var left = $(ly._icon).offset().left+$(ly._icon).width();
+            var top = $(ly._icon).offset().top;                    
+            $("#info_photo").css({left:left,top:top});
+            $("#info_photo image").css("src",ly.options.imgurl);
+            $("#info_photo label").html(ly.options.time);
+            $("#info_photo").show();
+        },
+        //获取
+        getImgMarker:function(id){
+            for(var i=0;i<fP._imgData.length;i++){
+                if(fP._imgData[i].id==id && fP._imgData[i].ly)
+                return fP._imgData[i];
+            }
+            return null;
+        }
+    }
+    fP.init();
+</script>
+</body>
+</html>
